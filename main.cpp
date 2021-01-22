@@ -8,9 +8,18 @@ double bringRadical(double x, double a) {
 }
 
 double bisectionMethod(double a, double left, double right) {
-    double middle = left + (right - left) / 2;
+    double middle = left + (right - left) / 2;//-10+10
     while (abs(right - left)> E) {
-        if (bringRadical(middle, a) * bringRadical(left, a) > 0) {
+        if (bringRadical(left, a) == 0) {
+            cout<<"Left border\n";
+            return left;
+        }
+        if (bringRadical(right, a) == 0) {
+            cout<<"Right border\n";
+            return right;
+        }
+        if (bringRadical(middle, a) * bringRadical(left, a) >
+        0) {
             left = middle;
         }
         else right = middle;
@@ -25,6 +34,14 @@ double bisectionMethod(double a, double left, double right) {
 double chordMethod(double a, double left, double right){
     double tmp = 0, temp = 1;
     while(abs(tmp - temp) > E){
+        if (bringRadical(left, a) == 0) {
+            cout<<"Left border\n";
+            return left;
+        }
+        if (bringRadical(right, a) == 0) {
+            cout<<"Right border\n";
+            return right;
+        }
         temp = tmp;
         tmp = left - bringRadical(left, a) / (bringRadical(right, a) - bringRadical(left, a)) * (right - left);
         if((bringRadical(right, a) * bringRadical(tmp, a)) < 0) left = tmp;
